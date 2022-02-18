@@ -12,6 +12,13 @@
 	<head>
 		<title>Epic Mickey Wii Patch Generator</title>
 
+		<script>
+			// Hacky workaround for Netlify
+			if (!window.location.pathname.endsWith("/")) {
+				window.history.pushState(null, null, `${window.location.href}/`);
+			}
+		</script>
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="zipjs/dist/jszip.min.js"></script>
 		<script src="filesaver/dist/FileSaver.min.js"></script>

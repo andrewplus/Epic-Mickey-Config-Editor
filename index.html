@@ -4,6 +4,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>EMConfig - Epic Mickey Config Editor</title>
+    <script>
+        // Hacky workaround for Netlify
+        if (!window.location.pathname.endsWith("/")) {
+            window.history.pushState(null, null, `${window.location.href}/`);
+        }
+    </script>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Code+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
