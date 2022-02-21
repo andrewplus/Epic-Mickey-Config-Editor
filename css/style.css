@@ -1,58 +1,99 @@
 body.desktop {
   overflow-x: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  /* IE scrollbars */
   scrollbar-base-color: #868686;
   scrollbar-face-color: #868686;
   scrollbar-track-color: #505050;
-  scrollbar-arrow-color: #868686; }
-  body.desktop main {
-    border: 0;
-    width: 100vw;
-    min-height: 100vh;
-    margin: 0;
-    overflow-x: hidden; }
-  body.desktop .overlay {
-    width: 80%;
-    left: 10%;
-    height: 90%;
-    max-height: 500px !important; }
+  scrollbar-arrow-color: #868686;
+}
+
+body.desktop main {
+  border: 0;
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+body.desktop .overlay {
+  width: 80%;
+  left: 10%;
+  height: 90%;
+  max-height: 500px !important;
+}
+
+/* Webkit scrollbars */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #141414;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #6b6b6b;
+  border-radius: 9999px;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
 
 body, html {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  overflow: auto; }
+  overflow: auto;
+}
 
 body {
   background: #3b3b3b;
   color: #ccc;
   font-family: 'Open Sans', sans-serif;
-  position: relative; }
+  position: relative;
+}
 
-* {
-  box-sizing: border-box; }
+.overlay-opened main, .overlay-opened {
+  overflow: hidden;
+}
 
 .show {
-  display: block !important; }
+  display: block !important;
+}
 
 .show-flex {
-  display: flex !important; }
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
 
 input::-ms-clear {
-  display: none; }
+  display: none;
+}
 
 input:focus, textarea:focus {
   outline: none;
-  background: rgba(225, 225, 225, 0.1) !important; }
+  background: rgba(225, 225, 225, 0.1) !important;
+}
 
 .text-center {
-  text-align: center !important; }
+  text-align: center !important;
+}
 
 h1, h2, h3, h4, h5, h6, b, strong, i, thead {
-  font-family: 'Source Code Pro', monospace; }
+  font-family: 'Source Code Pro', monospace;
+}
 
 h1 {
   font-size: 1.9em;
-  margin: 0.2em; }
+  margin: 0.2em;
+}
 
 .button {
   padding: 5px 18px;
@@ -60,14 +101,16 @@ h1 {
   margin: 4px;
   display: inline-block;
   border: 1px solid transparent;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .button:hover {
   border: 1px solid #ccc;
-  background: rgba(225, 225, 225, 0.1); }
+  background: rgba(225, 225, 225, 0.1);
+}
 
 .message {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -75,7 +118,33 @@ h1 {
   text-align: center;
   color: white;
   background-color: rgba(0, 0, 0, 0.2);
-  z-index: 99999; }
+  z-index: 99999;
+  -webkit-animation: pop 200ms 1;
+          animation: pop 200ms 1;
+  height: 42px;
+}
+
+@-webkit-keyframes pop {
+  from {
+    -webkit-transform: translateY(42px);
+            transform: translateY(42px);
+  }
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes pop {
+  from {
+    -webkit-transform: translateY(42px);
+            transform: translateY(42px);
+  }
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
 
 main {
   background: #2b2b2b;
@@ -86,7 +155,8 @@ main {
   display: block;
   min-height: 400px;
   padding-bottom: 150px;
-  position: relative; }
+  position: relative;
+}
 
 .editor {
   background: #262524;
@@ -95,37 +165,55 @@ main {
   font-size: 0px;
   border: 1px solid #4b4b4b;
   min-height: 23px;
-  background: rgba(0, 0, 0, 0.418); }
-  .editor .item {
-    display: inline-flex;
-    width: 100%;
-    border-top: 1px solid #4b4b4b;
-    position: relative; }
-    .editor .item .key, .editor .item .value {
-      padding: 2px;
-      font-family: 'Source Code Pro', monospace;
-      display: block;
-      border: 0px;
-      border-radius: 0px;
-      background: transparent;
-      color: white;
-      background: #262524; }
-    .editor .item .key {
-      width: calc(50% - 21px);
-      border-right: 1px solid #4b4b4b; }
-    .editor .item .value {
-      width: 50%; }
-    .editor .item .remove {
-      width: 21px;
-      background-color: #4b4b4b;
-      background-size: 50% 50%;
-      background-repeat: no-repeat;
-      background-position: center center;
-      cursor: pointer; }
-    .editor .item .remove:hover {
-      background-color: #646464; }
-  .editor .item:first-child {
-    border-top: 0px !important; }
+  background: rgba(0, 0, 0, 0.418);
+}
+
+.editor .item {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  border-top: 1px solid #4b4b4b;
+  position: relative;
+}
+
+.editor .item .key, .editor .item .value {
+  padding: 2px;
+  font-family: 'Source Code Pro', monospace;
+  display: block;
+  border: 0px;
+  border-radius: 0px;
+  background: transparent;
+  color: white;
+  background: #262524;
+}
+
+.editor .item .key {
+  width: calc(50% - 21px);
+  border-right: 1px solid #4b4b4b;
+}
+
+.editor .item .value {
+  width: 50%;
+}
+
+.editor .item .remove {
+  width: 21px;
+  background-color: #4b4b4b;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url(../assets/x.svg);
+  cursor: pointer;
+}
+
+.editor .item .remove:hover {
+  background-color: #646464;
+}
+
+.editor .item:first-child {
+  border-top: 0px !important;
+}
 
 .dictionary {
   display: block;
@@ -140,54 +228,76 @@ main {
   overflow-y: auto;
   max-height: 184px;
   z-index: 99;
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
   -ms-overflow-style: none;
   overflow-x: hidden;
-  box-sizing: content-box; }
-  .dictionary li {
-    font-size: 13px;
-    font-family: 'Source Code Pro', monospace;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    padding: 2px;
-    cursor: default;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden; }
-  .dictionary li:hover {
-    background-color: rgba(225, 225, 225, 0.1); }
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+.dictionary li {
+  font-size: 13px;
+  font-family: 'Source Code Pro', monospace;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding: 2px;
+  cursor: default;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.dictionary li:hover {
+  background-color: rgba(225, 225, 225, 0.1);
+}
 
 .dictionary::-webkit-scrollbar {
-  display: none; }
+  display: none;
+}
 
 .dictionary-key {
-  left: 0; }
+  left: 0;
+}
 
 .dictionary-value {
-  right: 0; }
+  right: 0;
+}
 
 html > .dictionary {
-  display: none; }
+  display: none;
+}
 
 .options {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 90%;
-  margin: 0px auto; }
-  .options .option {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #4b4b4b;
-    font-size: 0.8em;
-    border-top-color: transparent; }
-  .options .option:not(:first-child) {
-    border-left-color: transparent; }
-  .options .option:hover {
-    border: 1px solid #ccc;
-    background-color: rgba(225, 225, 225, 0.1);
-    cursor: pointer; }
-  .options .option:active {
-    background-color: rgba(225, 225, 225, 0.3); }
+  margin: 0px auto;
+}
+
+.options .option {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #4b4b4b;
+  font-size: 0.8em;
+  border-top-color: transparent;
+}
+
+.options .option:not(:first-child) {
+  border-left-color: transparent;
+}
+
+.options .option:hover {
+  border: 1px solid #ccc;
+  background-color: rgba(225, 225, 225, 0.1);
+  cursor: pointer;
+}
+
+.options .option:active {
+  background-color: rgba(225, 225, 225, 0.3);
+}
 
 .darken {
   width: 100%;
@@ -198,7 +308,8 @@ html > .dictionary {
   left: 0;
   padding: 30px;
   display: none;
-  z-index: 999; }
+  z-index: 999;
+}
 
 .overlay {
   width: 40%;
@@ -212,78 +323,112 @@ html > .dictionary {
   display: none;
   z-index: 9999;
   padding: 10px;
-  flex-direction: column;
-  max-height: 360px; }
-  .overlay .content {
-    font-size: 0.9em;
-    background: #262524;
-    border: 1px solid #4b4b4b;
-    width: 100%;
-    height: fit-content;
-    height: 100%;
-    padding: 10px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: relative !important;
-    line-height: 1.5;
-    text-align: left; }
-    .overlay .content .overlay-item {
-      padding: 10px;
-      background: rgba(0, 0, 0, 0.2);
-      margin: 4px 0;
-      position: relative;
-      border: 1px solid transparent;
-      cursor: pointer; }
-      .overlay .content .overlay-item .name {
-        font-size: 1em;
-        font-weight: bold;
-        font-family: 'Source Code Pro', monospace; }
-      .overlay .content .overlay-item .description {
-        font-size: 0.9em;
-        margin: 0 14px;
-        margin-right: 25px; }
-    .overlay .content .overlay-item:after {
-      content: "+";
-      display: block;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      line-height: 1;
-      font-weight: bold; }
-    .overlay .content .overlay-item:hover {
-      border: 1px solid #ccc;
-      background: rgba(225, 225, 225, 0.1); }
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-height: 360px;
+}
+
+.overlay .content {
+  font-size: 0.9em;
+  background: #262524;
+  border: 1px solid #4b4b4b;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  height: 100%;
+  padding: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative !important;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.overlay .content .overlay-item {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  margin: 4px 0;
+  position: relative;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.overlay .content .overlay-item .name {
+  font-size: 1em;
+  font-weight: bold;
+  font-family: 'Source Code Pro', monospace;
+}
+
+.overlay .content .overlay-item .description {
+  font-size: 0.9em;
+  margin: 0 14px;
+  margin-right: 25px;
+}
+
+.overlay .content .overlay-item:after {
+  content: "+";
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.overlay .content .overlay-item:hover {
+  border: 1px solid #ccc;
+  background: rgba(225, 225, 225, 0.1);
+}
 
 .overlay-export .content {
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin-top: 10px;
-  text-align: center; }
-  .overlay-export .content .save-desktop {
-    display: flex; }
-  .overlay-export .content textarea {
-    background-color: rgba(225, 225, 225, 0.1);
-    border: 1px solid #4b4b4b;
-    color: white;
-    border-radius: 0px;
-    width: 100%;
-    padding: 10px;
-    height: 100%;
-    margin-top: 6px; }
-  .overlay-export .content small {
-    line-height: 1;
-    margin-bottom: 8px;
-    margin-top: 10px;
-    display: block; }
-  .overlay-export .content input.save-path {
-    padding: 5px 10px;
-    background: transparent;
-    margin: 4px;
-    display: inline-block;
-    border: 1px solid #4b4b4b;
-    border-radius: 0px;
-    font-size: 0.9em;
-    line-height: 1.5;
-    flex-grow: 1;
-    color: white; }
+  text-align: center;
+}
 
+.overlay-export .content .save-desktop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.overlay-export .content textarea {
+  background-color: rgba(225, 225, 225, 0.1);
+  border: 1px solid #4b4b4b;
+  color: white;
+  border-radius: 0px;
+  width: 100%;
+  padding: 10px;
+  height: 100%;
+  margin-top: 6px;
+}
+
+.overlay-export .content small {
+  line-height: 1;
+  margin-bottom: 8px;
+  margin-top: 10px;
+  display: block;
+}
+
+.overlay-export .content input.save-path {
+  padding: 5px 10px;
+  background: transparent;
+  margin: 4px;
+  display: inline-block;
+  border: 1px solid #4b4b4b;
+  border-radius: 0px;
+  font-size: 0.9em;
+  line-height: 1.5;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  color: white;
+  cursor: text;
+}
 /*# sourceMappingURL=style.css.map */

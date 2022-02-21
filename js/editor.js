@@ -19,12 +19,18 @@ function isNumberKey(evt) {
 
 // Message 
 function message(contents, bgcolor) {
+    // Delete existing messages first
+    document.querySelectorAll(".message").forEach((e) => {e.remove()});
+    // Make message element
     document.querySelector("main").insertAdjacentHTML("beforeend", '<div class="message" style="background:'+bgcolor+'">'+contents+'</div>');
-    setTimeout(function(){ document.querySelector(".message").remove() }, 2000);
+    // After timeout, remove element
+    setTimeout(function(){ if (document.querySelector(".message")) document.querySelector(".message").remove() }, 2000);
 }
 
 // Close any open overlays
 function closeOverlay() {
+    currentOverlay = "none";
+    document.documentElement.classList.remove("overlay-opened");
     document.querySelector(".overlay-mixins").classList.remove("show-flex");
     document.querySelector(".overlay-presets").classList.remove("show-flex");
     document.querySelector(".overlay-export").classList.remove("show-flex");
@@ -276,6 +282,7 @@ document.querySelector(".option.clear").addEventListener("click", function() {
 document.querySelector(".option.mixin").addEventListener("click", function() {
     document.querySelector(".overlay-mixins").classList.add("show-flex");
     document.querySelector(".darken").classList.add("show");
+    document.documentElement.classList.add("overlay-opened");
     mixinOverlay();
 });
 
@@ -283,6 +290,7 @@ document.querySelector(".option.mixin").addEventListener("click", function() {
 document.querySelector(".option.preset").addEventListener("click", function() {
     document.querySelector(".overlay-presets").classList.add("show-flex");
     document.querySelector(".darken").classList.add("show");
+    document.documentElement.classList.add("overlay-opened");
     presetOverlay();
 });
 
@@ -290,6 +298,7 @@ document.querySelector(".option.preset").addEventListener("click", function() {
 document.querySelector(".option.export").addEventListener("click", function() {
     document.querySelector(".overlay-export").classList.add("show-flex");
     document.querySelector(".darken").classList.add("show");
+    document.documentElement.classList.add("overlay-opened");
     exportOverlay();
 });
 

@@ -166,6 +166,7 @@ const mixinsDatabase = [
 ]
 
 function mixinOverlay() {
+    currentOverlay = "mixin";
     const mixinsContent = document.querySelector(".overlay-mixins .content");
     mixinsContent.innerHTML = returnMixinListHTML(mixinsDatabase);
     mixinsContent.scrollTop = 0;

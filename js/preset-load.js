@@ -156,6 +156,7 @@ const presetsDatabase = [
 ]
 
 function presetOverlay() {
+    currentOverlay = "preset";
     const mixinsContent = document.querySelector(".overlay-presets .content");
     mixinsContent.innerHTML = returnPresetListHTML(presetsDatabase);
     mixinsContent.scrollTop = 0;

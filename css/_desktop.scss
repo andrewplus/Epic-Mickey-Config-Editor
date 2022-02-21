@@ -1,6 +1,8 @@
 body.desktop {
     overflow-x: hidden;
+    user-select: none;
 
+    /* IE scrollbars */
     scrollbar-base-color: rgb(134, 134, 134);
     scrollbar-face-color: rgb(134, 134, 134);
     scrollbar-track-color: rgb(80, 80, 80);
@@ -20,4 +22,18 @@ body.desktop {
         height: 90%;
         max-height: 500px !important;
     }
+}
+
+/* Webkit scrollbars */
+*::-webkit-scrollbar {
+    width: 12px;
+}
+  
+*::-webkit-scrollbar-track {
+    background: rgb(20, 20, 20);
+}
+  
+*::-webkit-scrollbar-thumb {
+    background-color: rgb(107, 107, 107);
+    border-radius: 9999px;
 }

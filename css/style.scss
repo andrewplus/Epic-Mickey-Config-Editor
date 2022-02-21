@@ -7,6 +7,10 @@ $editor-border: 1px solid rgb(75, 75, 75);
 
 @import 'desktop';
 
+* {
+    box-sizing: border-box;
+}
+
 body, html {
     margin: 0;
     padding: 0;
@@ -21,8 +25,8 @@ body {
     position: relative;
 }
 
-* {
-    box-sizing: border-box;
+.overlay-opened main, .overlay-opened {
+    overflow: hidden;
 }
 
 .show {
@@ -70,7 +74,7 @@ h1 {
 }
 
 .message {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -79,6 +83,13 @@ h1 {
     color: white;
     background-color: rgba(0,0,0,0.2);
     z-index: 99999;
+    animation: pop 200ms 1;
+    height: 42px;
+}
+
+@keyframes pop {
+    from {transform: translateY(42px);}
+    to {transform: translateY(0);}
 }
 
 main {
@@ -134,6 +145,7 @@ main {
             background-size: 50% 50%;
             background-repeat: no-repeat;
             background-position: center center;
+            background-image: url(../assets/x.svg);
             cursor: pointer;
         }
 
@@ -346,5 +358,6 @@ html > .dictionary {
         line-height: 1.5;
         flex-grow: 1;
         color: white;
+        cursor: text;
     }
 }
